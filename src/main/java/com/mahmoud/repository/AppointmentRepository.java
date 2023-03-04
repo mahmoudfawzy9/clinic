@@ -14,12 +14,12 @@ import java.util.List;
 @Repository
 public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
 
-//     @Query("SELECT a FROM Appointment a WHERE a.title LIKE %?1%")
-//     public List<Appointment> findAll(String keyword);
+    @Query("SELECT a FROM Appointment a WHERE a.title LIKE %?1%")
+    public List<Appointment> findAll(String keyword);
 
     Page<Appointment> findById(@RequestParam("id") Long id, Pageable pageable);
 
     Page<Appointment> findByTitleContaining(@RequestParam("title") String title, Pageable pageable);
 
-    List<Appointment> findAll(String keyword);
+//     List<Appointment> findAll(String keyword);
 }
