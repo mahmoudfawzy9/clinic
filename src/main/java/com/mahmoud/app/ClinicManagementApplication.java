@@ -10,11 +10,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication
-@EnableJpaAuditing
+// @EnableJpaAuditing
 //@ComponentScan({ "com.mahmoud" }) // If our Controller class or Service class is not in the same packages we have //to add packages's name like this...directory(package) with main class
 //@EnableSwagger2
-@ComponentScan(basePackages = "com.mahmoud.app")
+// @ComponentScan(basePackages = "com.mahmoud.app")
+@SpringBootApplication
 public class ClinicManagementApplication {
 
 	public static void main(String[] args) {
