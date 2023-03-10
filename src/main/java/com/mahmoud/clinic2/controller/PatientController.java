@@ -21,4 +21,10 @@ public class PatientController {
              @RequestBody CreatePatientProfileRequest createPatientProfileRequest) {
         return patientProfileService.insert(createPatientProfileRequest);
     }
+    
+        @GetMapping(path = "/{patientId}", produces = "application/json")
+    public Patient getPatientById(@PathVariable Long patientId) {
+        Patient patient = patientProfileService.getPatientById(patientId);
+        return patientProfileService.getPatientById(patientId);
+    }
 }
