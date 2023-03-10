@@ -7,4 +7,7 @@ import org.springframework.http.ResponseEntity;
 public interface PatientService {
 
     ResponseEntity<CreatePatientResponse> insert(CreatePatientProfileRequest createPatientProfileRequest);
+    
+    Patient getPatientById(Long id);
+
 }
