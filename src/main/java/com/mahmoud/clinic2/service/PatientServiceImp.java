@@ -51,5 +51,17 @@ public class PatientServiceImp implements PatientService {
         return new ResponseEntity<>(CreatePatientResponse.builder().message("Data Saved").messageCode(201)
                 .patientId(patientProfile.getId()).build(), HttpStatus.CREATED);
     }
+        
+      public Patient getPatientById(Long id) {
+        try {
+            Optional<Patient> optional = patientRepository.findById(id);
 
+            if (optional.isPresent()) {
+                return optional.get();
+            }
+
+            throw new EntityNotFoundException("Patient with id: " + id + " wasn't found");
+        } catch (NoSuchElementException e) {
+            throw new EntityNotFoundException("Patient with id: " + id + " wasn't found");
+        }
 }
