@@ -24,9 +24,4 @@ public class Clinic2Application {
 		SpringApplication.run(Clinic2Application.class, args);
 	}
 
-//	@Bean
-//	public Docket productApi() {
-//		return new Docket(DocumentationType.SWAGGER_2).select()
-//				.apis(RequestHandlerSelectors.basePackage("com.mahmoud.clinic2")).build();
-//	}
 }
