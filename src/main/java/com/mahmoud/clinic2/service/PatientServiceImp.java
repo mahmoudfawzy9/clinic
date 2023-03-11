@@ -15,12 +15,14 @@ import java.util.Optional;
 
 @Service
 public class PatientServiceImp implements PatientService {
-        @Autowired
-        PatientRepository patientRepository;
+        
+    @Autowired
+    PatientRepository patientRepository;
 
-        @Autowired
+    @Autowired
     PatientProfileMapper patientProfileMapper;
-@Override
+        
+    @Override
     public ResponseEntity<CreatePatientResponse> insert(
             CreatePatientProfileRequest createPatientProfileRequest
     ){
@@ -52,6 +54,7 @@ public class PatientServiceImp implements PatientService {
                 .patientId(patientProfile.getId()).build(), HttpStatus.CREATED);
     }
         
+      @Override
       public Patient getPatientById(Long id) {
         try {
             Optional<Patient> optional = patientRepository.findById(id);
@@ -64,4 +67,13 @@ public class PatientServiceImp implements PatientService {
         } catch (NoSuchElementException e) {
             throw new EntityNotFoundException("Patient with id: " + id + " wasn't found");
         }
+              
+    @Override
+    public SuccessResponse<Patient> delete(Long id) {
+        return patientRepository.findById(id)
+                .map(patient -> {
+                    patientRepository.delete(patient);
+                    return new SuccessResponse<Patient>(ResponseStringKeys.DELETED, ResponseIntegerKeys.OK);
+                }).orElseGet(() -> new SuccessResponse<>(ResponseStringKeys.NOT_FOUND, ResponseIntegerKeys.NOT_FOUND));
+    }
 }
