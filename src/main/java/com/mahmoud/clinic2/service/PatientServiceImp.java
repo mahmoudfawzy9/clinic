@@ -78,18 +78,18 @@ public class PatientServiceImp implements PatientService {
     }
               
     @Override
-    public Patient update(Long id, PatientRegisterScreenOneDto dto){
+    public SuccessResponse<Patient> update(Long id, PatientRegisterScreenOneDto dto){
          Patient entity = patientRepository.findById(id)
                 .orElseThrow(() -> new CustomServiceException(ResponseStringKeys.NOT_FOUND, ResponseIntegerKeys.NOT_FOUND));
-        entity.setFirstName(dto.getFirstName());
-        entity.setLastName(dto.getLastName());
+         entity.setFirstName(dto.getFirstName());
+         entity.setLastName(dto.getLastName());
         entity.setMiddleName(dto.getMiddleName());
         entity.setHomePhone(dto.getHomePhone());
         entity.setMobilePhone(dto.getMobilePhone());
         entity.setGender(dto.getGender());
         entity.setEmail(dto.getEmail());
         entity.setDateOfBirth(dto.getDateOfBirth());
-        return patientRepository.save(entity);
+        return new SuccessResponse<Patient>(patientRepository.save(entity));
 
      }
 }
