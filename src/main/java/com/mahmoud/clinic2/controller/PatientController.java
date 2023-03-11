@@ -19,7 +19,7 @@ public class PatientController {
     @PostMapping(value = "/create")
     public ResponseEntity<CreatePatientResponse> createPatientProfile(
              @RequestBody CreatePatientProfileRequest createPatientProfileRequest) {
-        return patientProfileService.insert(createPatientProfileRequest);
+        return patientProfileService.create(createPatientProfileRequest);
     }
     
         @GetMapping(path = "/{patientId}", produces = "application/json")
