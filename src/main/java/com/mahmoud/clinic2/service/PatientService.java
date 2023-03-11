@@ -12,6 +12,6 @@ public interface PatientService {
     
     SuccessResponse<Patient> delete(Long id);
     
-    Patient update(Long id, PatientRegisterScreenOneDto dto);
+    SuccessResponse<Patient> update(Long id, PatientRegisterScreenOneDto dto);
 
 }
