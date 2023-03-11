@@ -11,6 +11,7 @@ public interface PatientService {
     Patient getPatientById(Long id);
     
     SuccessResponse<Patient> delete(Long id);
-
+    
+    Patient update(Long id, PatientRegisterScreenOneDto dto);
 
 }
