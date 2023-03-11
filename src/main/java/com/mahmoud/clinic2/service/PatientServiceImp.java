@@ -23,7 +23,7 @@ public class PatientServiceImp implements PatientService {
     PatientProfileMapper patientProfileMapper;
         
     @Override
-    public ResponseEntity<CreatePatientResponse> insert(
+    public ResponseEntity<CreatePatientResponse> create(
             CreatePatientProfileRequest createPatientProfileRequest
     ){
 
