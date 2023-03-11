@@ -33,4 +33,15 @@ public class PatientController {
         return new ResponseEntity<>(patientProfileService.delete(id), HttpStatus.OK);
     }
     
+        @PutMapping(value = "update")
+    public SuccessResponse<Patient> updatePatientProfile(
+            @RequestParam("patientId") Long patientId, @RequestBody PatientRegisterScreenOneDto dto
+    ){
+        return new SuccessResponse<>(
+                ResponseStringKeys.CREATED,
+                ResponseIntegerKeys.CREATED,
+                patientProfileService.update(patientId, dto));
+
+    }
+    
 }
