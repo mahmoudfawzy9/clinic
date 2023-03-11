@@ -9,5 +9,8 @@ public interface PatientService {
     ResponseEntity<CreatePatientResponse> insert(CreatePatientProfileRequest createPatientProfileRequest);
     
     Patient getPatientById(Long id);
+    
+    SuccessResponse<Patient> delete(Long id);
+
 
 }
