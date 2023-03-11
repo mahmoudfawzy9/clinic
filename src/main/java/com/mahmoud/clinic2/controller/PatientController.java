@@ -27,4 +27,10 @@ public class PatientController {
         Patient patient = patientProfileService.getPatientById(patientId);
         return patientProfileService.getPatientById(patientId);
     }
+    
+        @DeleteMapping(value = "/delete")
+    public ResponseEntity<SuccessResponse<Patient>> delete(@RequestParam("id") Long id){
+        return new ResponseEntity<>(patientProfileService.delete(id), HttpStatus.OK);
+    }
+    
 }
