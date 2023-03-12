@@ -1,25 +1,33 @@
 package com.mahmoud.clinic2;
 
+import com.mahmoud.clinic2.entity.Appointment;
 import com.mahmoud.clinic2.entity.Patient;
 import com.mahmoud.clinic2.entity.enums.Gender;
+import com.mahmoud.clinic2.repository.PatientRepository;
 import com.mahmoud.clinic2.request.CreatePatientProfileRequest;
 import com.mahmoud.clinic2.service.PatientService;
+import com.mahmoud.clinic2.service.PatientServiceImp;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class PatientServiceTest {
 
-    @InjectMocks
+    @Mock
+    private PatientRepository patientRepo;
+
     PatientService service;
 
     Patient patient;
+
+    List<Appointment> collection;
     CreatePatientProfileRequest request;
 
     void saveNewPatient() {
@@ -31,16 +39,21 @@ public class PatientServiceTest {
         patient.setFirstName("Mahmoud");
         patient.setMiddleName("Fawzy");
         patient.setLastName("Mohamed");
-        patient.setHomePhone("+2450***");
-        patient.setMobilePhone("01006864224");
+        patient.setHomePhone("+2450****");
+        patient.setMobilePhone("0100686****");
+    }
+
+    @BeforeEach
+    void setUp()
+    {
+        this.service
+                = new PatientServiceImp(this.patientRepo) ;
     }
     @Test
-    void getPatient() {
-        Mockito.when(service.getPatientById(1L)).thenReturn(this.patient);
-        Patient patientRes = service.getPatientById(1L);
-
-        assertThat(patientRes.getPatientProfileKey()).isEqualTo(this.patient.getPatientProfileKey());
-        verify(service).getPatientById(1L);
+    void getPatientById() {
+        Mockito.when(service.getPatientById(1L)).thenReturn(patient);
+        service.getPatientById(1L);
+        verify(patientRepo).findById(1L);
 
     }
 }
